@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Accesso Riservato — Missione Madrid</title>
+<style>
+  body{
+    font-family:"Courier New",monospace;
+    background:#111;
+    color:#eee;
+    text-align:center;
+    padding:40px;
+  }
+  .terminal{
+    display:inline-block;
+    text-align:left;
+    background:#000;
+    border:4px solid #0f0;
+    padding:30px;
+    box-shadow:0 0 20px rgba(0,255,0,0.4);
+    max-width:400px;
+  }
+  h1{
+    color:#0f0;
+    font-size:20px;
+    text-transform:uppercase;
+    border-bottom:2px solid #0f0;
+    padding-bottom:8px;
+    margin-bottom:20px;
+  }
+  input{
+    width:100%;
+    padding:10px;
+    background:#111;
+    border:2px solid #0f0;
+    color:#0f0;
+    font-family:"Courier New",monospace;
+  }
+  button{
+    width:100%;
+    margin-top:12px;
+    padding:10px;
+    background:#0f0;
+    color:#000;
+    font-weight:bold;
+    cursor:pointer;
+    border:2px solid #0f0;
+  }
+  .error{
+    color:#f55;
+    margin-top:10px;
+    font-size:14px;
+  }
+</style>
+</head>
+<body>
+  <div class="terminal">
+    <h1>ACCESSO RISERVATO</h1>
+    <p>Autenticazione richiesta.<br>Inserisci la password per accedere al fascicolo segreto.</p>
+    <input id="password" type="password" placeholder="Password">
+    <button id="accessBtn">Accedi</button>
+    <div id="msg" class="error"></div>
+  </div>
+
+<script>
+  const PASSWORD_CORRETTA = "AWHITE";
+  document.getElementById("accessBtn").addEventListener("click", ()=>{
+    const pass = document.getElementById("password").value.trim();
+    const msg = document.getElementById("msg");
+    if(!pass){ msg.textContent = "Inserisci la password."; return; }
+    if(pass === PASSWORD_CORRETTA){
+      msg.textContent = "";
+      window.location.href = "missione.html";
+    } else {
+      msg.textContent = "Accesso negato. Password errata.";
+    }
+  });
+  document.getElementById("password").addEventListener("keydown", e=>{
+    if(e.key === "Enter") document.getElementById("accessBtn").click();
+  });
+</script>
+</body>
+</html>
